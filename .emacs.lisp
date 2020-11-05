@@ -40,4 +40,4 @@
 (put 'upcase-region 'disabled nil)
 
 
-(set-frame-font "liberation mono")
+(set-frame-font "liberation mono-11")
