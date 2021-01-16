@@ -25,17 +25,17 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(cursor ((t (:background "green"))))
- '(font-lock-builtin-face ((t (:foreground "lemon chiffon"))))
+ '(font-lock-builtin-face ((t (:foreground "white"))))
  '(font-lock-comment-delimiter-face ((t (:foreground "gray40"))))
  '(font-lock-comment-face ((t (:foreground "gray40" :slant oblique))))
- '(font-lock-constant-face ((t (:foreground "lemon chiffon" :weight bold))))
- '(font-lock-doc-face ((t (:foreground "lemon chiffon" :slant oblique))))
- '(font-lock-function-name-face ((t (:foreground "lemon chiffon" :weight bold))))
+ '(font-lock-constant-face ((t (:foreground "white" :weight bold))))
+ '(font-lock-doc-face ((t (:foreground "white" :slant oblique))))
+ '(font-lock-function-name-face ((t (:foreground "white" :weight bold))))
  '(font-lock-keyword-face ((t (:foreground "goldenrod"))))
  '(font-lock-preprocessor-face ((t (:foreground "goldenrod" :slant italic))))
  '(font-lock-string-face ((t (:foreground "green"))))
- '(font-lock-type-face ((t (:foreground "lemon chiffon"))))
- '(font-lock-variable-name-face ((t (:foreground "lemon chiffon")))))
+ '(font-lock-type-face ((t (:foreground "white"))))
+ '(font-lock-variable-name-face ((t (:foreground "white")))))
 
 (put 'upcase-region 'disabled nil)
 
