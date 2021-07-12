@@ -1,3 +1,10 @@
+(setq inhibit-startup-message t)
+
+(menu-bar-mode -1)
+
+(load-theme 'tango-dark)
+
+
 (setq c-default-style "bsd"
   c-basic-offset 4)
 
