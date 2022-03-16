@@ -1,50 +1,60 @@
 (setq inhibit-startup-message t)
 
-(menu-bar-mode -1)
+(menu-bar-mode -1)    ; Disable visible scrollbar
+(tool-bar-mode -1)    ; Disable the toolbar
+(tooltip-mode -1)     ; Give some breathing room
+(set-fringe-mode 10)  ; Give some breathing room
 
-(load-theme 'tango-dark)
+;; Set up the visible bell
+(setq visible-bell t)
 
+;; Studpid braces style fix
+(setq c-default-style "linux"
+      c-basic-offset 4)
 
-(setq c-default-style "bsd"
-  c-basic-offset 4)
-
-(c-set-offset 'case-label '+)
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(ansi-color-names-vector
-   ["#2d3743" "#ff4242" "#74af68" "#dbdb95" "#34cae2" "#008b8b" "#00ede1" "#e1e1e0"])
- '(custom-enabled-themes '(manoj-dark))
- '(face-font-family-alternatives
-   '(("Monospace" "courier" "fixed")
-     ("Monospace Serif" "Courier 10 Pitch" "Consolas" "Courier Std" "FreeMono" "Nimbus Mono L" "courier" "fixed")
-     ("courier" "CMU Typewriter Text" "fixed")
-     ("Sans Serif" "helv" "helvetica" "arial" "fixed")
-     ("helv" "helvetica" "arial" "fixed"))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(cursor ((t (:background "green"))))
- '(font-lock-builtin-face ((t (:foreground "white"))))
- '(font-lock-comment-delimiter-face ((t (:foreground "gray40"))))
- '(font-lock-comment-face ((t (:foreground "gray40" :slant oblique))))
- '(font-lock-constant-face ((t (:foreground "white" :weight bold))))
- '(font-lock-doc-face ((t (:foreground "white" :slant oblique))))
- '(font-lock-function-name-face ((t (:foreground "white" :weight bold))))
- '(font-lock-keyword-face ((t (:foreground "goldenrod"))))
- '(font-lock-preprocessor-face ((t (:foreground "goldenrod" :slant italic))))
- '(font-lock-string-face ((t (:foreground "green"))))
- '(font-lock-type-face ((t (:foreground "white"))))
- '(font-lock-variable-name-face ((t (:foreground "white")))))
-
-(put 'upcase-region 'disabled nil)
+(load-theme 'wombat)
+(put 'dired-find-alternate-file 'disabled nil)
 
 
-(set-frame-font "liberation mono-11")
+;; Initialize package sources
+(require 'package)
+
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")
+                         ("org" . "https://orgmode.org/elpa/")
+                         ("elpa" . "https://elpa.gnu.org/packages/")))
+
+(package-initialize)
+(unless package-archive-contents
+ (package-refresh-contents))
+
+;; Initialize use-package on non-Linux platforms
+(unless (package-installed-p 'use-package)
+   (package-install 'use-package))
+
+(require 'use-package)
+(setq use-package-always-ensure t)
+
+(use-package command-log-mode)
+
+(use-package ivy
+  :diminish
+  :bind (("C-s" . swiper)
+         :map ivy-minibuffer-map
+         ("TAB" . ivy-alt-done)	
+         ("C-l" . ivy-alt-done)
+         ("C-j" . ivy-next-line)
+         ("C-k" . ivy-previous-line)
+         :map ivy-switch-buffer-map
+         ("C-k" . ivy-previous-line) 
+         ("C-l" . ivy-done)
+         ("C-d" . ivy-switch-buffer-kill)
+         :map ivy-reverse-i-search-map
+         ("C-k" . ivy-previous-line)
+         ("C-d" . ivy-reverse-i-search-kill))
+  :config
+  (ivy-mode 1))
+
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1)
+  :custom ((doom-modeline-height 10)))
