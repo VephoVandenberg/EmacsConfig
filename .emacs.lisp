@@ -12,6 +12,12 @@
 (setq c-default-style "linux"
       c-basic-offset 4)
 
+;; Initial font
+(set-default-font "Liberation Mono 13")
+
+;; Maybe autocomplete will work
+(setq tab-always-indent 'complete)
+
 (load-theme 'wombat)
 (put 'dired-find-alternate-file 'disabled nil)
 
@@ -27,7 +33,7 @@
 (unless package-archive-contents
  (package-refresh-contents))
 
-;; Initialize use-package on non-Linux platforms
+;; Initialize use-package on non-Linux platform
 (unless (package-installed-p 'use-package)
    (package-install 'use-package))
 
@@ -58,3 +64,18 @@
   :ensure t
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 10)))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (haskell-mode use-package ivy doom-modeline command-log-mode))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+(put 'upcase-region 'disabled nil)
