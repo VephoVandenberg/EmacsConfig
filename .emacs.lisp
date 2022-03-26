@@ -5,6 +5,9 @@
 (tooltip-mode -1)     ; Give some breathing room
 (set-fringe-mode 10)  ; Give some breathing room
 
+;; Simple windowing stuff
+(split-window-horizontally)
+
 ;; Set up the visible bell
 (setq visible-bell t)
 
@@ -71,7 +74,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (haskell-mode use-package ivy doom-modeline command-log-mode))))
+    (company company-ebdb go-autocomplete haskell-mode use-package ivy doom-modeline command-log-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -79,3 +82,23 @@
  ;; If there is more than one, they won't work right.
  )
 (put 'upcase-region 'disabled nil)
+
+;; Autocompletion mode
+(setq company-idle-delay 0)
+(setq company-minimum-prefix-length 2)
+(setq company-show-quick-access t)
+
+(custom-set-faces
+ '(company-tooltip-quick-access
+   ((t (:foreground "light-blue"))))
+ '(company-tooltip-quick-access-selection
+   ((t (:foreground "light-blue"))))
+ '(company-tooltip-selection
+   ((t (:foreground "light blue"))))
+ '(company-tooltip
+   ((t (:foreground "wombat"))))
+ '(company-tooltip-mouse
+   ((t (:foreground "wombat")))
+ ))
+
+(add-hook 'after-init-hook 'global-company-mode)
